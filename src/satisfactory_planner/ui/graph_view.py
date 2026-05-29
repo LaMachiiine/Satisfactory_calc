@@ -59,23 +59,26 @@ def build_graph_html(dot: str, height: int = 540) -> str:
         svg.setAttribute('width', '100%');
         svg.setAttribute('height', '100%');
         document.getElementById('graph').appendChild(svg);
-        var pz = svgPanZoom(svg, {{ controlIconsEnabled:true, fit:true,
-                                    center:true, minZoom:0.1, maxZoom:20 }});
-        // L'iframe Streamlit peut se monter en taille 0 ou être dimensionnée
-        // tardivement (expander replié, ou latence en ligne) : le fit initial
-        // tombe alors sur du vide -> SVG invisible. On re-fit dès que le conteneur
-        // a une taille réelle : frame suivante, sur redimensionnement, et via
-        // quelques relances différées (robuste au timing en ligne).
+        // L'iframe Streamlit est souvent dimensionnée APRÈS l'exécution du script
+        // (latence en ligne, ou expander replié). Initialiser svg-pan-zoom à taille
+        // 0 casse son viewport (fit/RESET sans effet). On n'initialise donc QUE
+        // lorsque le conteneur a une taille réelle, puis on re-fit aux changements.
         var wrap = document.getElementById('wrap');
-        function refit() {{
-          if (wrap.clientWidth > 0 && wrap.clientHeight > 0) {{
+        var pz = null;
+        function setup() {{
+          if (wrap.clientWidth <= 0 || wrap.clientHeight <= 0) return;
+          if (!pz) {{
+            pz = svgPanZoom(svg, {{ controlIconsEnabled:true, fit:true,
+                                    center:true, minZoom:0.1, maxZoom:20 }});
+          }} else {{
             pz.resize(); pz.fit(); pz.center();
           }}
         }}
-        requestAnimationFrame(refit);
-        new ResizeObserver(refit).observe(wrap);
-        setTimeout(refit, 150);
-        setTimeout(refit, 600);
+        requestAnimationFrame(setup);
+        new ResizeObserver(setup).observe(wrap);
+        setTimeout(setup, 100);
+        setTimeout(setup, 400);
+        setTimeout(setup, 1200);
       }}).catch(function(e) {{ fail(String(e)); }});
     }}
   </script>
