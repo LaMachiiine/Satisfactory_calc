@@ -7,6 +7,10 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 
+# uv.lock NON versionné : sinon Streamlit Cloud fait `uv sync` (qui n'installe pas
+# l'extra UI) au lieu de lire requirements.txt. Reste présent en local pour `uv`.
+uv.lock
+
 # Données : le brut Docs.json est re-téléchargeable, le cache est généré.
 # NB : data/map_background.jpg EST versionné (nécessaire au fond de carte en ligne).
 data/*.zip
