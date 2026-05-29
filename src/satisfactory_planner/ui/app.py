@@ -3,8 +3,19 @@ Somersloop, plan, Sankey et graphes de distribution.
 
 Lancer :  uv run --extra ui streamlit run src/satisfactory_planner/ui/app.py
 """
+# ruff: noqa: E402 -- bootstrap sys.path (déploiement layout src/) avant les imports
 
 from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+# Déploiement (Streamlit Cloud) : le package n'est pas installé et le code est en
+# layout src/ ; on ajoute src/ au chemin pour que `import satisfactory_planner`
+# résolve. En local (uv), le package est installé -> cet insert est sans effet.
+_SRC = Path(__file__).resolve().parents[2]
+if str(_SRC) not in sys.path:
+    sys.path.insert(0, str(_SRC))
 
 import plotly.graph_objects as go
 import streamlit as st
