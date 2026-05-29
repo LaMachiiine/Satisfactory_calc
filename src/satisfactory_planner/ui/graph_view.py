@@ -61,15 +61,21 @@ def build_graph_html(dot: str, height: int = 540) -> str:
         document.getElementById('graph').appendChild(svg);
         var pz = svgPanZoom(svg, {{ controlIconsEnabled:true, fit:true,
                                     center:true, minZoom:0.1, maxZoom:20 }});
-        // Dans un st.expander replié, l'iframe se monte en taille 0x0 : le fit
-        // ci-dessus tombe sur du vide (SVG invisible). On re-fit dès que le
-        // conteneur prend une taille réelle, et à chaque redimensionnement.
+        // L'iframe Streamlit peut se monter en taille 0 ou être dimensionnée
+        // tardivement (expander replié, ou latence en ligne) : le fit initial
+        // tombe alors sur du vide -> SVG invisible. On re-fit dès que le conteneur
+        // a une taille réelle : frame suivante, sur redimensionnement, et via
+        // quelques relances différées (robuste au timing en ligne).
         var wrap = document.getElementById('wrap');
-        new ResizeObserver(function() {{
+        function refit() {{
           if (wrap.clientWidth > 0 && wrap.clientHeight > 0) {{
             pz.resize(); pz.fit(); pz.center();
           }}
-        }}).observe(wrap);
+        }}
+        requestAnimationFrame(refit);
+        new ResizeObserver(refit).observe(wrap);
+        setTimeout(refit, 150);
+        setTimeout(refit, 600);
       }}).catch(function(e) {{ fail(String(e)); }});
     }}
   </script>
