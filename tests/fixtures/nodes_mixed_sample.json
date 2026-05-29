@@ -1,0 +1,5 @@
+[
+  {"id": "IRON1", "resource": "Desc_OreIron_C", "purity": "normal", "form": "solid", "kind": "node", "x": 1.0, "y": 1.0, "z": 0.0},
+  {"id": "WELL1", "resource": "Desc_Water_C", "purity": "pure", "form": "liquid", "kind": "well", "core": "CORE1", "x": 2.0, "y": 2.0, "z": 0.0},
+  {"id": "GEY1", "resource": "Desc_Geyser_C", "purity": "unknown", "form": "geyser", "kind": "geyser", "x": 3.0, "y": 3.0, "z": 0.0}
+]

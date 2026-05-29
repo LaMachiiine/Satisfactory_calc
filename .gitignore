@@ -1,0 +1,17 @@
+# Environnements
+.venv/
+__pycache__/
+*.py[cod]
+
+# Caches outils
+.pytest_cache/
+.ruff_cache/
+
+# Données : le brut Docs.json est re-téléchargeable, le cache est généré.
+# NB : data/map_background.jpg EST versionné (nécessaire au fond de carte en ligne).
+data/*.zip
+data/recipes.json
+
+# État runtime par projet/utilisateur (éphémère sur l'hébergement gratuit)
+nodes_state.json
+custom_sources.json

@@ -1,0 +1,95 @@
+[
+  {
+    "NativeClass": "/Script/CoreUObject.Class'/Script/FactoryGame.FGBuildableManufacturer'",
+    "Classes": [
+      {
+        "ClassName": "Build_SmelterMk1_C",
+        "mDisplayName": "Smelter",
+        "mPowerConsumption": "4.000000",
+        "mPowerConsumptionExponent": "1.321929",
+        "mProductionShardSlotSize": "1"
+      },
+      {
+        "ClassName": "Build_ConstructorMk1_C",
+        "mDisplayName": "Constructor",
+        "mPowerConsumption": "4.000000",
+        "mPowerConsumptionExponent": "1.321929",
+        "mProductionShardSlotSize": "1"
+      },
+      {
+        "ClassName": "Build_OilRefinery_C",
+        "mDisplayName": "Refinery",
+        "mPowerConsumption": "30.000000",
+        "mPowerConsumptionExponent": "1.321929",
+        "mProductionShardSlotSize": "2"
+      }
+    ]
+  },
+  {
+    "NativeClass": "/Script/CoreUObject.Class'/Script/FactoryGame.FGResourceDescriptor'",
+    "Classes": [
+      {
+        "ClassName": "Desc_OreIron_C",
+        "mDisplayName": "Iron Ore",
+        "mForm": "RF_SOLID"
+      },
+      {
+        "ClassName": "Desc_Water_C",
+        "mDisplayName": "Water",
+        "mForm": "RF_LIQUID"
+      }
+    ]
+  },
+  {
+    "NativeClass": "/Script/CoreUObject.Class'/Script/FactoryGame.FGItemDescriptor'",
+    "Classes": [
+      {
+        "ClassName": "Desc_IronIngot_C",
+        "mDisplayName": "Iron Ingot",
+        "mForm": "RF_SOLID"
+      },
+      {
+        "ClassName": "Desc_IronPlate_C",
+        "mDisplayName": "Iron Plate",
+        "mForm": "RF_SOLID"
+      }
+    ]
+  },
+  {
+    "NativeClass": "/Script/CoreUObject.Class'/Script/FactoryGame.FGRecipe'",
+    "Classes": [
+      {
+        "ClassName": "Recipe_IngotIron_C",
+        "mDisplayName": "Iron Ingot",
+        "mIngredients": "((ItemClass=\"BGC'/Game/Parts/Desc_OreIron.Desc_OreIron_C'\",Amount=1))",
+        "mProduct": "((ItemClass=\"BGC'/Game/Parts/Desc_IronIngot.Desc_IronIngot_C'\",Amount=1))",
+        "mManufactoringDuration": "2.000000",
+        "mProducedIn": "(\"/G/Build_SmelterMk1.Build_SmelterMk1_C\",\"/G/BP_WorkBenchComponent.BP_WorkBenchComponent_C\")"
+      },
+      {
+        "ClassName": "Recipe_IronPlate_C",
+        "mDisplayName": "Iron Plate",
+        "mIngredients": "((ItemClass=\"BGC'/Game/Parts/Desc_IronIngot.Desc_IronIngot_C'\",Amount=3))",
+        "mProduct": "((ItemClass=\"BGC'/Game/Parts/Desc_IronPlate.Desc_IronPlate_C'\",Amount=2))",
+        "mManufactoringDuration": "6.000000",
+        "mProducedIn": "(\"/G/Build_ConstructorMk1.Build_ConstructorMk1_C\")"
+      },
+      {
+        "ClassName": "Recipe_Alternate_PureIronIngot_C",
+        "mDisplayName": "Alternate: Pure Iron Ingot",
+        "mIngredients": "((ItemClass=\"BGC'/Game/Parts/Desc_OreIron.Desc_OreIron_C'\",Amount=7),(ItemClass=\"BGC'/Game/Parts/Desc_Water.Desc_Water_C'\",Amount=4000))",
+        "mProduct": "((ItemClass=\"BGC'/Game/Parts/Desc_IronIngot.Desc_IronIngot_C'\",Amount=13))",
+        "mManufactoringDuration": "12.000000",
+        "mProducedIn": "(\"/G/Build_OilRefinery.Build_OilRefinery_C\")"
+      },
+      {
+        "ClassName": "Recipe_HandCraftedOnly_C",
+        "mDisplayName": "Hand Crafted",
+        "mIngredients": "((ItemClass=\"BGC'/Game/Parts/Desc_OreIron.Desc_OreIron_C'\",Amount=1))",
+        "mProduct": "((ItemClass=\"BGC'/Game/Parts/Desc_IronPlate.Desc_IronPlate_C'\",Amount=1))",
+        "mManufactoringDuration": "1.000000",
+        "mProducedIn": "(\"/G/BP_BuildGun.BP_BuildGun_C\")"
+      }
+    ]
+  }
+]

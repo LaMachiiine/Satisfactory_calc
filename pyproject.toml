@@ -1,0 +1,48 @@
+[project]
+name = "satisfactory-planner"
+version = "0.1.0"
+description = "Calculateur & distributeur de production pour Satisfactory (1.1) : ratios par programmation linéaire + réseau logique de distribution."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "ortools>=9.15.6755",
+    "pydantic>=2.6",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+]
+ui = [
+    "streamlit>=1.40",
+    "plotly>=5.24",
+    "folium>=0.17",
+    "streamlit-folium>=0.23",
+]
+
+[project.scripts]
+planner = "satisfactory_planner.ui.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/satisfactory_planner"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = [
+    # Bindings SWIG d'OR-Tools, hors de notre contrôle.
+    "ignore:builtin type Swig.* has no __module__ attribute:DeprecationWarning",
+    "ignore:builtin type swigvarlink has no __module__ attribute:DeprecationWarning",
+]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

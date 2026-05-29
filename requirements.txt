@@ -1,0 +1,5 @@
+# Dépendances pour Streamlit Community Cloud (qui n'utilise pas `uv`).
+# « .[ui] » installe CE package (src/satisfactory_planner) + ses extras UI, afin que
+# `import satisfactory_planner` fonctionne et tire ortools, pydantic, streamlit,
+# plotly, folium, streamlit-folium. En local on continue d'utiliser `uv sync`.
+.[ui]

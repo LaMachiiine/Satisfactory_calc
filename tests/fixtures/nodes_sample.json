@@ -1,0 +1,6 @@
+[
+  {"id": "N1", "resource": "Desc_OreIron_C", "purity": "pure", "form": "solid", "x": 1.0, "y": 2.0, "z": 3.0},
+  {"id": "N2", "resource": "Desc_OreIron_C", "purity": "normal", "form": "solid", "x": 4.0, "y": 5.0, "z": 6.0},
+  {"id": "N3", "resource": "Desc_OreCopper_C", "purity": "impure", "form": "solid", "x": 7.0, "y": 8.0, "z": 9.0},
+  {"id": "N4", "resource": "Desc_LiquidOil_C", "purity": "pure", "form": "liquid", "x": 10.0, "y": 11.0, "z": 12.0}
+]
